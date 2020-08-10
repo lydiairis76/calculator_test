@@ -19,20 +19,10 @@ describe('calculator functionality', () => {
       container = dom.window.document.body;
     })
   
-    test('has an add button', () => {
-      expect(container.querySelector('.btn-plus')).not.toBeNull();
-      expect(getByText(container, '+')).toBeInTheDocument();
-    })
+    test('can add two numbers', () => {
   
-    test('has a subtract button', () => {
-      expect(container.querySelector('.btn-subtract')).not.toBeNull();
-      expect(getByText(container, '-')).toBeInTheDocument();
-    })
-  
-    test('can add two number', () => {
-  
-      let number1 = container.querySelector("#input1");
-      let number2 = container.querySelector("#input2");
+      let number1 = container.querySelector("#inputa");
+      let number2 = container.querySelector("#inputb");
   
       fireEvent.change(number1, {target: { value: 3 } });
       fireEvent.change(number2, {target: { value: 2 } });
@@ -40,8 +30,52 @@ describe('calculator functionality', () => {
       const button = getByText(container, '+');
       fireEvent.click(button);
   
-      let result = container.querySelector("#output");
+      let result = container.querySelector("#result");
       expect(parseFloat(result.innerHTML)).toBe(5);
+    })
+    test('can add subtract numbers', () => {
+  
+      let number1 = container.querySelector("#inputa");
+      let number2 = container.querySelector("#inputb");
+  
+      fireEvent.change(number1, {target: { value: 3 } });
+      fireEvent.change(number2, {target: { value: 2 } });
+  
+      const button = getByText(container, '-');
+      fireEvent.click(button);
+  
+      let result = container.querySelector("#result");
+      expect(parseFloat(result.innerHTML)).toBe(1);
+    })
+  
+    test('can multiply two numbers', () => {
+  
+      let number1 = container.querySelector("#inputa");
+      let number2 = container.querySelector("#inputb");
+  
+      fireEvent.change(number1, {target: { value: 3 } });
+      fireEvent.change(number2, {target: { value: 2 } });
+  
+      const button = getByText(container, '*');
+      fireEvent.click(button);
+  
+      let result = container.querySelector("#result");
+      expect(parseFloat(result.innerHTML)).toBe(6);
+    })
+  
+    test('can divide two numbers', () => {
+  
+      let number1 = container.querySelector("#inputa");
+      let number2 = container.querySelector("#inputb");
+  
+      fireEvent.change(number1, {target: { value: 4 } });
+      fireEvent.change(number2, {target: { value: 2 } });
+  
+      const button = getByText(container, '/');
+      fireEvent.click(button);
+  
+      let result = container.querySelector("#result");
+      expect(parseFloat(result.innerHTML)).toBe(2);
     })
   
   })
